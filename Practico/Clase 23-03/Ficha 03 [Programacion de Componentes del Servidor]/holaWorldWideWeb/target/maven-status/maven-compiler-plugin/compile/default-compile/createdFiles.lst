@@ -1,0 +1,8 @@
+dlc/holaworldwideweb/JAXRSConfiguration.class
+dlc/holaworldwideweb/servlets/EchoServlet.class
+dlc/holaworldwideweb/servlets/ContadorSesionServlet.class
+dlc/holaworldwideweb/resources/JavaEE8Resource.class
+dlc/holaworldwideweb/servlets/ContadorCokieServlet.class
+dlc/holaworldwideweb/servlets/ContadorContextoServlet.class
+dlc/holaworldwideweb/servlets/ContadorServlet.class
+dlc/holaworldwideweb/servlets/EchoServletJson.class

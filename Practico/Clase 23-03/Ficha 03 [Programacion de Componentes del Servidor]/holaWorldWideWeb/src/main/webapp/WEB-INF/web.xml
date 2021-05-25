@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="4.0" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd">
+    <servlet>
+        <servlet-name>Echo</servlet-name>
+        <servlet-class>dlc.holaworldwideweb.servlets.EchoServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Contador</servlet-name>
+        <servlet-class>dlc.holaworldwideweb.servlets.ContadorServlet</servlet-class>
+        <init-param>
+            <param-name>initValue</param-name>
+            <param-value>50</param-value>
+        </init-param>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Echo</servlet-name>
+        <url-pattern>/echo</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Contador</servlet-name>
+        <url-pattern>/visitas</url-pattern>
+    </servlet-mapping>
+    <context-param>
+        <param-name>contador-inicial</param-name>
+        <param-value>5</param-value>
+    </context-param>
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+    </session-config>
+</web-app>

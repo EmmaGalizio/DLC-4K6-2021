@@ -1,0 +1,8 @@
+clase RandomAccessFile para gestionar archivos de acceso aleatorio
+
+
+Al momento de crear o modificar la lista de posteo de cada término en el RandomAccessFile se almacena no
+solo el byte en donde comienza la lista, sino tambien el final de la misma (por ahora no sirve porque en el caso
+de que se agregue un archivo y sea necesario agrandar la lista de posteo de uno o más términos se deberan mover todas las
+listas de los términos subsiguientes, haciendo que sea necesario modificar todos los índices de todas las listas
+

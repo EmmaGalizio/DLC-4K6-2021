@@ -1,0 +1,8 @@
+Para el calculo del ranking de una página:
+El ranquing que se le da a una página (url) depende de la "sumatoria" de los rankings de todas las páginas
+p que tienen un enlace a la página que se está analizando (url) dividido una función salida(p) que es la cantidad de links que tiene
+la página que contiene la referencia (p) porque mientras mayor cantidad de links contenga la pagina que tiene
+el link p es menor el valor que 
+aporta cada link al ranking de alguna url.
+Esto es así porque se supone que generalmente un usuario va a entrar a una url siendo redirigido desde otra página p
+en lugar de entrar directamente a la url desde la barra de búsqueda de un navegador.
