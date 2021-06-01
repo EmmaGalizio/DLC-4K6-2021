@@ -26,7 +26,7 @@ public class RandomInsertTest {
     @Autowired
     private VocabularyRepository vocabularyRepository;
 
-    @Test
+    //@Test
     //@Rollback(value = false)
     @Transactional
     public void randomInserTest(){

@@ -14,18 +14,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.PostConstruct;
 import java.io.File;
-import java.io.IOException;
 import java.util.*;
 
 @Service
 public class IndexationEngine {
 
-    private String documentsRootDirecroty;
-    private static final String TESTING_DOCUMENTS_ROOT_DIRECTORY = "D:\\Repositorio DLC-4K6-2021\\DLC-4K6-2021\\TPI\\documentos\\test";
-    private static final int MAX_FILES_INDEXED = 300;
-    public static final String POSTING_LISTS_FILE_PATH = "D:\\Repositorio DLC-4K6-2021\\DLC-4K6-2021\\TPI\\postingLists\\postingLists";
-    private static final String AUXILIAR_POSTING_FILE = "D:\\Repositorio DLC-4K6-2021\\DLC-4K6-2021\\TPI\\postingLists\\auxiliarFile";
-
+    private static final int MAX_FILES_INDEXED = 100;
 
     private List<String> indexedDocuments;
     @Autowired
@@ -50,7 +44,7 @@ public class IndexationEngine {
     private Logger logger;
 
     public IndexationEngine(){
-        documentsRootDirecroty = "D:\\Repositorio DLC-4K6-2021\\DLC-4K6-2021\\TPI\\documentos";
+
         logger = LoggerFactory.getLogger(IndexationEngine.class);
 
     }
@@ -63,8 +57,8 @@ public class IndexationEngine {
     }
 
 
-    @Transactional
-    public void indexFiles(File file) throws IOException{
+
+    public void indexFiles(File file){
         Date inicio = new Date();
 
         if(!file.exists()) throw new IllegalArgumentException("The path doesn't match with any existent file");
@@ -77,7 +71,8 @@ public class IndexationEngine {
         logger.info("Tiempo transcurrido: " + (float)(fin.getTime() - inicio.getTime())/1000/60 + " minutos");
     }
 
-    public void indexFiles(String path) throws IOException{
+
+    public void indexFiles(String path){
         File file = new File(path);
         this.indexFiles(file);
     }
@@ -89,40 +84,38 @@ public class IndexationEngine {
     }
 
 
-    private void indexSingleFile(File file)throws IOException{
+    private void indexSingleFile(File file){
         if(this.indexFile(file)){
-            postingListWriter.writeAndClean(vocabulary, modifiedPostingLists,
-                    POSTING_LISTS_FILE_PATH, AUXILIAR_POSTING_FILE);
+            postingListWriter.writeAndClean(vocabulary, modifiedPostingLists);
             modifiedPostingLists = null;
         }
     }
 
-    private void indexDirectory(File[] files) throws IOException{
+    private void indexDirectory(File[] files){
         int filesIndexed = 0;
 
         for(File document : files){
-            logger.info("=====================================");
-            logger.info("Processing file: " + document.getName());
+
             if(this.indexFile(document)){
                 filesIndexed++;
             }
-            logger.info("File processing finished");
-            logger.info("========================");
+
 
             if(filesIndexed == MAX_FILES_INDEXED){
-                postingListWriter.writeAndClean(vocabulary, modifiedPostingLists,
-                        POSTING_LISTS_FILE_PATH, AUXILIAR_POSTING_FILE);
+                postingListWriter.writeAndClean(vocabulary, modifiedPostingLists);
                 modifiedPostingLists = null;
                 filesIndexed = 0;
             }
         }
-        postingListWriter.writeAndClean(vocabulary, modifiedPostingLists,
-                POSTING_LISTS_FILE_PATH, AUXILIAR_POSTING_FILE);
+        postingListWriter.writeAndClean(vocabulary, modifiedPostingLists);
         modifiedPostingLists = null;
     }
 
     private boolean indexFile(File document){
         if(this.isIndexed(document)) return false;
+
+        logger.info("=====================================");
+        logger.info("Processing file: " + document.getName());
         try{
             fileReader.openFile(document.getAbsolutePath());
             while(fileReader.isReady()) {
@@ -150,6 +143,8 @@ public class IndexationEngine {
                 this.addModifiedToken(modifiedToken);
                 this.addIndexedDocument(document);
             }
+            logger.info("File processing finished");
+            logger.info("========================");
         } catch(Exception e){
             e.printStackTrace();
             return false;
@@ -166,6 +161,7 @@ public class IndexationEngine {
                 indexedDocuments.add(document.getAbsolutePath());
     }
 
+    /*
     @Transactional
     public void indexTest(){
 
@@ -223,18 +219,16 @@ public class IndexationEngine {
                     ++filesIndexed;
                     if(filesIndexed == MAX_FILES_INDEXED){
 
-                        postingListWriter.writeAndClean(vocabulary, modifiedPostingLists,
-                                                POSTING_LISTS_FILE_PATH, AUXILIAR_POSTING_FILE);
+                        postingListWriter.writeAndClean(vocabulary, modifiedPostingLists);
                         modifiedPostingLists = null;
                         logger.info("=============================");
 
                         filesIndexed = 0;
                     }
                 }
-                postingListWriter.writeAndClean(vocabulary, modifiedPostingLists,
-                                                        POSTING_LISTS_FILE_PATH, AUXILIAR_POSTING_FILE);
+                postingListWriter.writeAndClean(vocabulary, modifiedPostingLists);
 
-            }catch (IOException e){
+            }catch (Exception e){
                 logger.error("Ocurrio un error: " + e.getMessage());
                 e.printStackTrace();
             }
@@ -246,6 +240,7 @@ public class IndexationEngine {
         logger.info("Cantidad de tokens detectados: " + vocabulary.size());
 
     }
+    */
 
     private boolean isIndexed(File file){
         return indexedDocuments.contains(file.getAbsolutePath());
@@ -261,13 +256,6 @@ public class IndexationEngine {
 
 
     //<editor-fold desc="GETTERS AND SETTERS">
-    public String getDocumentsRootDirecroty() {
-        return documentsRootDirecroty;
-    }
-
-    public void setDocumentsRootDirecroty(String documentsRootDirecroty) {
-        this.documentsRootDirecroty = documentsRootDirecroty;
-    }
 
     public List<String> getIndexedDocuments() {
         return indexedDocuments;

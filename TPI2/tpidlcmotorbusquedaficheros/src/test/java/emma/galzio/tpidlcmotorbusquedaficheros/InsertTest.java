@@ -26,7 +26,7 @@ public class InsertTest {
     @Autowired
     private VocabularyRepository vocabularyRepository;
 
-    @Test
+    //@Test
     @Transactional
     @Rollback(value = false)
     public void testPostingSlotInsert(){

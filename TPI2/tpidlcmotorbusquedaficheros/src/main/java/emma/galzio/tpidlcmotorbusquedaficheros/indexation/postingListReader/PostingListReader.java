@@ -6,6 +6,6 @@ import java.io.IOException;
 
 public interface PostingListReader {
 
-    void loadPostingList(VocabularySlot vocabularySlot) throws IOException;
+    void loadPostingList(VocabularySlot vocabularySlot);
 
 }

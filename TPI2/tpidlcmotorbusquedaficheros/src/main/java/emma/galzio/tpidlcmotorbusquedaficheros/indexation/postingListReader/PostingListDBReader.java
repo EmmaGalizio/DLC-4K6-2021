@@ -22,7 +22,7 @@ public class PostingListDBReader implements PostingListReader {
     private EntityMapper<PosteoEntity, PostingSlot> entityEntityMapper;
 
     @Override
-    public void loadPostingList(VocabularySlot vocabularySlot) throws IOException {
+    public void loadPostingList(VocabularySlot vocabularySlot){
         List<PosteoEntity> posteos = postingSlotRepository.findByIdTerminoOrderByTfDesc(vocabularySlot.getToken());
         List<PostingSlot> postingSlots = entityEntityMapper.mapAllFromEntity(posteos);
         vocabularySlot.setPostingList(postingSlots);

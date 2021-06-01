@@ -9,5 +9,5 @@ import java.util.Map;
 
 public interface PostingListWriter {
 
-    void writeAndClean(Map<String, VocabularySlot> vocabulary, Map<String,ModifiedToken> modifiedTokens, String postingListsUrl, String auxFileUrl) throws IOException;
+    void writeAndClean(Map<String, VocabularySlot> vocabulary, Map<String,ModifiedToken> modifiedTokens);
 }

@@ -5,6 +5,7 @@ import emma.galzio.tpidlcmotorbusquedaficheros.indexation.structure.ModifiedToke
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
 
@@ -19,6 +20,9 @@ class TpidlcmdotorbusquedaApplicationTests {
 
     @Autowired
     private IndexationEngine indexationEngine;
+
+    @Value("${tpi.dlc.documentsResourceDirectory}")
+    private String path;
 
 
     //@Test
@@ -36,15 +40,15 @@ class TpidlcmdotorbusquedaApplicationTests {
 
     }
 
-    @Test
-    @Order(1)
+    //@Test
+    //@Order(1)
     @Rollback(value = false)
     public void directoryIndexationTest(){
-        String path = "D:\\Repositorio DLC-4K6-2021\\DLC-4K6-2021\\TPI\\documentos\\test";
+
         File file = new File(path);
         try{
             indexationEngine.indexFiles(file);
-        } catch(IOException e){
+        } catch(Exception e){
             e.printStackTrace();
         }
 
@@ -54,10 +58,10 @@ class TpidlcmdotorbusquedaApplicationTests {
     //@Order(2)
     //@Rollback(value = false)
     public void singleFileIndexationTest(){
-        String path = "C:\\Users\\mati_\\Desktop\\test\\8lssm10u.txt";
+
         try{
             indexationEngine.indexFiles(path);
-        }catch(IOException e){
+        }catch(Exception e){
             e.printStackTrace();
         }
     }
@@ -67,7 +71,7 @@ class TpidlcmdotorbusquedaApplicationTests {
     //@Rollback(value = false)
     public void indexationTest(){
         System.out.println("Prueba de indexacion de 50 ficheros");
-        indexationEngine.indexTest();
+        //indexationEngine.indexTest();
     }
 
     //@Test
