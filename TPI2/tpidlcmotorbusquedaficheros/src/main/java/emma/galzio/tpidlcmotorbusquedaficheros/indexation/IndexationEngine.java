@@ -10,8 +10,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
 import javax.annotation.PostConstruct;
 import java.io.File;
 import java.util.*;
@@ -30,7 +28,7 @@ public class IndexationEngine {
     @Qualifier("postingListDBReader")
     private PostingListReader postingListReader;
     @Autowired
-    @Qualifier("postingListDBWriter")
+    @Qualifier("postingListJDBCWriter")
     private PostingListWriter postingListWriter;
     @Autowired
     private IDocumentController documentController;
@@ -88,6 +86,7 @@ public class IndexationEngine {
         if(this.indexFile(file)){
             postingListWriter.writeAndClean(vocabulary, modifiedPostingLists);
             modifiedPostingLists = null;
+            System.gc();
         }
     }
 
@@ -99,16 +98,16 @@ public class IndexationEngine {
             if(this.indexFile(document)){
                 filesIndexed++;
             }
-
-
             if(filesIndexed == MAX_FILES_INDEXED){
                 postingListWriter.writeAndClean(vocabulary, modifiedPostingLists);
                 modifiedPostingLists = null;
                 filesIndexed = 0;
+                System.gc();
             }
         }
         postingListWriter.writeAndClean(vocabulary, modifiedPostingLists);
         modifiedPostingLists = null;
+        System.gc();
     }
 
     private boolean indexFile(File document){
@@ -125,10 +124,13 @@ public class IndexationEngine {
 
                 token = token.toLowerCase();
                 VocabularySlot vocabularySlot = vocabulary.getOrDefault(token, new VocabularySlot());
+                ModifiedToken modifiedToken = new ModifiedToken();
+                modifiedToken.setToken(token);
 
                 if (vocabularySlot.existInVocabulary()) {
                     if (!vocabularySlot.postingListIsLoaded()) {
                         postingListReader.loadPostingList(vocabularySlot);
+                        modifiedToken.setNeedUpdate(true);
                     }
                     if(!vocabularySlot.incrementPostingSlotForDocument(document.getAbsolutePath())){
                         vocabularySlot.addPostingSlot(document.getAbsolutePath());
@@ -137,12 +139,14 @@ public class IndexationEngine {
                     vocabularySlot.setToken(token);
                     vocabularySlot.addPostingSlot(document.getAbsolutePath());
                     vocabulary.put(token, vocabularySlot);
+
+                    modifiedToken.setNewToken(true);
+                    modifiedToken.setNeedUpdate(false);
                 }
-                ModifiedToken modifiedToken = new ModifiedToken();
-                modifiedToken.setToken(vocabularySlot.getToken());
                 this.addModifiedToken(modifiedToken);
                 this.addIndexedDocument(document);
             }
+            fileReader.closeFile();
             logger.info("File processing finished");
             logger.info("========================");
         } catch(Exception e){
@@ -161,86 +165,6 @@ public class IndexationEngine {
                 indexedDocuments.add(document.getAbsolutePath());
     }
 
-    /*
-    @Transactional
-    public void indexTest(){
-
-        Date inicio = new Date();
-        File rootDirectory = new File(TESTING_DOCUMENTS_ROOT_DIRECTORY);
-        int filesIndexed = 0;
-
-        if(rootDirectory.exists() && rootDirectory.isDirectory()) {
-            File[] documents = rootDirectory.listFiles();
-            try{
-
-                for (File document : documents) {
-                    logger.info("=====================================");
-                    logger.info("Processing file: " + document.getName());
-                    if(this.isIndexed(document)){
-                        continue;
-                    }
-                    fileReader.openFile(document.getAbsolutePath());
-                    while (fileReader.isReady()) {
-
-                        String token = fileReader.readNextWord();
-                        if(token == null || token.isEmpty()){
-                            continue;
-                        }
-                        token = token.toLowerCase();
-                        VocabularySlot vocabularySlot = vocabulary.getOrDefault(token, new VocabularySlot());
-                        ModifiedToken modifiedToken = new ModifiedToken();
-
-                        if (vocabularySlot.existInVocabulary()) {
-
-                            if (!vocabularySlot.postingListIsLoaded()) {
-
-                                postingListReader.loadPostingList(vocabularySlot);
-                                modifiedToken.setOriginalListSize(vocabularySlot.getPostingList().size());
-                                modifiedToken.setStartOfListIndex(vocabularySlot.getPostingListStartIndex());
-                           }
-                            if(!vocabularySlot.incrementPostingSlotForDocument(document.getAbsolutePath())){
-
-                                vocabularySlot.addPostingSlot(document.getAbsolutePath());
-                            }
-                        }else{
-                            vocabularySlot.setToken(token);
-                            vocabularySlot.addPostingSlot(document.getAbsolutePath());
-                            vocabulary.put(token, vocabularySlot);
-                        }
-                        modifiedToken.setToken(vocabularySlot.getToken());
-                        this.addModifiedToken(modifiedToken);
-                    }
-                    logger.info("File processing finished");
-                    logger.info("========================");
-                    if(!indexedDocuments.contains(document.getAbsolutePath())){
-                        indexedDocuments.add(document.getAbsolutePath());
-                    }
-
-                    ++filesIndexed;
-                    if(filesIndexed == MAX_FILES_INDEXED){
-
-                        postingListWriter.writeAndClean(vocabulary, modifiedPostingLists);
-                        modifiedPostingLists = null;
-                        logger.info("=============================");
-
-                        filesIndexed = 0;
-                    }
-                }
-                postingListWriter.writeAndClean(vocabulary, modifiedPostingLists);
-
-            }catch (Exception e){
-                logger.error("Ocurrio un error: " + e.getMessage());
-                e.printStackTrace();
-            }
-        }
-        Date fin = new Date();
-        logger.info("===============================");
-        logger.info("================================");
-        logger.info("Tiempo que demoró en procesar archivos:" + (((fin.getTime() - inicio.getTime()))/1000)/60);
-        logger.info("Cantidad de tokens detectados: " + vocabulary.size());
-
-    }
-    */
 
     private boolean isIndexed(File file){
         return indexedDocuments.contains(file.getAbsolutePath());
@@ -249,37 +173,27 @@ public class IndexationEngine {
     private void addModifiedToken(ModifiedToken modifiedToken){
         if(modifiedPostingLists == null) modifiedPostingLists = Collections.synchronizedMap(new HashMap<>());
 
+        ModifiedToken aux = modifiedPostingLists.get(modifiedToken.getToken());
+        if(aux != null){
+            if(aux.isNewToken()){
+                modifiedToken.setNewToken(true);
+            }
+            if(aux.isNeedUpdate() && !modifiedToken.isNeedUpdate()){
+                modifiedToken.setNeedUpdate(true);
+            }
+        }
         modifiedPostingLists.put(modifiedToken.getToken(), modifiedToken);
-
     }
-
-
 
     //<editor-fold desc="GETTERS AND SETTERS">
 
     public List<String> getIndexedDocuments() {
         return indexedDocuments;
     }
-
     public void setIndexedDocuments(List<String> indexedDocuments) {
         this.indexedDocuments = indexedDocuments;
     }
 
-    public Map<String, VocabularySlot> getVocabulary() {
-        return vocabulary;
-    }
-
-    public void setVocabulary(Map<String, VocabularySlot> vocabulary) {
-        this.vocabulary = vocabulary;
-    }
-
-    public Map<String,ModifiedToken> getModifiedPostingLists() {
-        return modifiedPostingLists;
-    }
-
-    public void setModifiedPostingLists(Map<String,ModifiedToken> modifiedPostingLists) {
-        this.modifiedPostingLists = modifiedPostingLists;
-    }
     //</editor-fold>
 }
 

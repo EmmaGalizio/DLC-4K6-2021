@@ -1,0 +1,12 @@
+IP Publica: 52.67.121.190
+DNS Publica: ec2-52-67-121-190.sa-east-1.compute.amazonaws.com
+
+Conectar a la terminal:
+
+ssh -i "/mnt/d/Repositorio DLC-4K6-2021/DLC-4K6-2021/clave instancia aws/instancia_tpi_dlc_key.pem" ec2-user@ec2-52-67-121-190.sa-east-1.compute.amazonaws.com
+
+Copiar archivos
+scp -i "/mnt/d/Repositorio DLC-4K6-2021/DLC-4K6-2021/clave instancia aws/instancia_tpi_dlc_key.pem" /home/emma/tpidlcmotorbusquedaficheros-0.0.1.jar ec2-user@ec2-52-67-121-190.sa-east-1.compute.amazonaws.com:/home/ec2-user/tpi_dlc/tpidlcmotorbusquedaficheros-0.0.1.jar
+
+path documentos tpi
+/home/ec2-user/tpi_dlc/documentos

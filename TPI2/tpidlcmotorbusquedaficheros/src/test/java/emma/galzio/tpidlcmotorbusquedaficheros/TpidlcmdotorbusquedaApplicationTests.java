@@ -25,20 +25,7 @@ class TpidlcmdotorbusquedaApplicationTests {
     private String path;
 
 
-    //@Test
-    public void modifiedTokenComparatorTest(){
-        ModifiedToken modifiedToken1 = new ModifiedToken();
-        modifiedToken1.setStartOfListIndex(3L);
 
-        ModifiedToken modifiedToken2 = new ModifiedToken();
-        modifiedToken2.setStartOfListIndex(5L);
-
-        Comparator<ModifiedToken> comparator = modifiedToken1.getStartIndexComparator();
-        int result = comparator.compare(modifiedToken1, modifiedToken2);
-        System.out.println("Resiltado: " + result);
-        assertThat(result < 0).isTrue();
-
-    }
 
     //@Test
     //@Order(1)
@@ -74,29 +61,5 @@ class TpidlcmdotorbusquedaApplicationTests {
         //indexationEngine.indexTest();
     }
 
-    //@Test
-    public void testModifiedTokensSorter(){
-
-        Random random = new Random();
-        ModifiedToken[] modifiedTokens = new ModifiedToken[1000000];
-        for(int i = 0; i < modifiedTokens.length; i++){
-            ModifiedToken modifiedToken = new ModifiedToken();
-            modifiedToken.setToken("Token " + i);
-            modifiedToken.setStartOfListIndex((long)(Math.random()*1000));
-            modifiedTokens[i] = modifiedToken;
-        }
-
-
-        //ModifiedTokensSorter modifiedTokensSorter = new ModifiedTokensSorter();
-        //modifiedTokensSorter.sort(modifiedTokens);
-        Arrays.sort(modifiedTokens, modifiedTokens[0].getStartIndexComparator());
-        //Arrays.parallelSort(modifiedTokens);
-
-        for(int i = 0; i< modifiedTokens.length -1; i+=10000){
-            System.out.println(modifiedTokens[i].getToken() + "  " + modifiedTokens[i].getStartOfListIndex());
-        }
-
-
-    }
 
 }

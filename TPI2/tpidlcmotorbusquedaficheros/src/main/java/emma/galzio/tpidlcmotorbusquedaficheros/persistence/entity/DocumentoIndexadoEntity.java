@@ -3,7 +3,7 @@ package emma.galzio.tpidlcmotorbusquedaficheros.persistence.entity;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "documentoindexado")
+@Table(name = "documentoIndexado")
 public class DocumentoIndexadoEntity {
 
     @Id

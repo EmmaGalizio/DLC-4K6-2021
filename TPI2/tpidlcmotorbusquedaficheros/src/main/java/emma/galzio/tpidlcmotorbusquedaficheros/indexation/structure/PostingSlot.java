@@ -11,18 +11,23 @@ import java.util.Comparator;
  * */
 public class PostingSlot {
 
-
     private String token;
     private String documentUrl;
     private Integer tokenFrecuency;
+    private boolean isNew;
+    private boolean needsUpdate;
 
     public PostingSlot() {
         tokenFrecuency = 0;
+        isNew = false;
+        needsUpdate = false;
     }
 
     public PostingSlot(String documentUrl, Integer tokenFrecuency) {
         this.documentUrl = documentUrl;
         this.tokenFrecuency = tokenFrecuency;
+        isNew = false;
+        needsUpdate = false;
     }
 
     public void incrementTokenFrecuency(){
@@ -67,6 +72,23 @@ public class PostingSlot {
     public void setToken(String token) {
         this.token = token;
     }
+
+    public boolean isNew() {
+        return isNew;
+    }
+
+    public void setNew(boolean aNew) {
+        isNew = aNew;
+    }
+
+    public boolean isNeedsUpdate() {
+        return needsUpdate;
+    }
+
+    public void setNeedsUpdate(boolean needsUpdate) {
+        this.needsUpdate = needsUpdate;
+    }
+
     //</editor-fold>
 
     private class DescendigFrecuencyComparator implements Comparator<PostingSlot>{
