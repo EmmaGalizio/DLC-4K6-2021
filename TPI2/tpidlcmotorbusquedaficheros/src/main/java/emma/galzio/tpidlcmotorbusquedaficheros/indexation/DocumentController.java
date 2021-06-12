@@ -27,4 +27,9 @@ public class DocumentController implements IDocumentController{
         return new ArrayList<>();
 
     }
+
+    @Override
+    public Integer countDocuments() {
+        return repository.countAll();
+    }
 }

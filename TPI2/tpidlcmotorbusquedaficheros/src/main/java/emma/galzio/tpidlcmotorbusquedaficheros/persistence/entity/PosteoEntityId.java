@@ -33,4 +33,17 @@ public class PosteoEntityId implements Serializable {
         return termino.hashCode() + documento.hashCode();
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if(obj == null) return false;
+        if(! (obj instanceof PosteoEntityId)) return false;
+        PosteoEntityId aux = null;
+        try {
+            aux = (PosteoEntityId)obj;
+        } catch (ClassCastException e){
+            return false;
+        }
+
+        return this.termino.equals(aux.getTermino()) && this.documento.equals(aux.getDocumento());
+    }
 }

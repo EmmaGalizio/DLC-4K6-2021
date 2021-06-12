@@ -10,7 +10,8 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import javax.servlet.ServletContext;
 import java.nio.file.Path;
 
-@RestController()
+@RestController
+@RequestMapping("api/indexation")
 public class IndexationRestController {
 
     @Autowired
@@ -18,7 +19,7 @@ public class IndexationRestController {
     @Autowired
     private ServletContext servletContext;
 
-    @PostMapping("api/indexation")
+    @PostMapping
     public UploadFileResponse indexNewFile(@RequestParam("file")MultipartFile file){
 
         Path newFilePath = indexationController.storeFile(file);
@@ -35,7 +36,7 @@ public class IndexationRestController {
 
     }
 
-    @GetMapping("api/indexation")
+    @GetMapping
     public UploadFileResponse pingEndpoint(){
         UploadFileResponse uploadFileResponse = new UploadFileResponse();
         uploadFileResponse.setFileName("Check");

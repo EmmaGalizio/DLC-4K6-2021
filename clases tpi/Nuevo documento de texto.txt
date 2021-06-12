@@ -1,1 +1,0 @@
-jdbc:mysql://localhost:3306/TPI_DLC_SearchEngine_Posteos?useSSL=false&serverTimezone=UTC&cachePrepStmts=true&useServerPrepStmts=true&rewriteBatchedStatements=true

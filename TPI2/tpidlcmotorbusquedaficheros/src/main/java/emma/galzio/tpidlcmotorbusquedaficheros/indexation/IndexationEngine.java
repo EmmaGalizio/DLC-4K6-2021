@@ -5,6 +5,7 @@ import emma.galzio.tpidlcmotorbusquedaficheros.indexation.postingListWriter.Post
 import emma.galzio.tpidlcmotorbusquedaficheros.indexation.structure.ModifiedToken;
 import emma.galzio.tpidlcmotorbusquedaficheros.indexation.structure.VocabularySlot;
 import emma.galzio.tpidlcmotorbusquedaficheros.utils.FileReader;
+import emma.galzio.tpidlcmotorbusquedaficheros.utils.StringNormalizer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,7 @@ import java.util.*;
 @Service
 public class IndexationEngine {
 
-    private static final int MAX_FILES_INDEXED = 100;
+    private static final int MAX_FILES_INDEXED = 600;
 
     private List<String> indexedDocuments;
     @Autowired
@@ -35,23 +36,25 @@ public class IndexationEngine {
     @Autowired
     private VocabularyController vocabularyController;
 
-    @Autowired //Es un bean porque utiliza el patrón singleton, es el mismo para toda la aplicación
+    @Autowired //Es un bean que utiliza el patrón singleton, es el mismo para toda la aplicación
     private Map<String, VocabularySlot> vocabulary;
     private Map<String,ModifiedToken> modifiedPostingLists;
+    //Se deberia cargar al principio y mantenerse en memoria porque el servicio es un bean singleton
+    private HashSet<String> stopWords;
 
     private Logger logger;
 
     public IndexationEngine(){
 
         logger = LoggerFactory.getLogger(IndexationEngine.class);
-
     }
 
     @PostConstruct
     private void init(){
         indexedDocuments = documentController.listAllIndexedDocuments();
         if(indexedDocuments == null) indexedDocuments = new ArrayList<>();
-        vocabularyController.loadVocabulary();
+        if(vocabulary.isEmpty()) vocabularyController.loadVocabulary();
+        stopWords = vocabularyController.loadStopWords();
     }
 
 
@@ -66,7 +69,7 @@ public class IndexationEngine {
             this.indexSingleFile(file);
         }
         Date fin = new Date();
-        logger.info("Tiempo transcurrido: " + (float)(fin.getTime() - inicio.getTime())/1000/60 + " minutos");
+        logger.info("Elapsed Time: " + (float)(fin.getTime() - inicio.getTime())/1000/60 + " minutos");
     }
 
 
@@ -75,10 +78,27 @@ public class IndexationEngine {
         this.indexFiles(file);
     }
 
-    //Necesitaría una regex para pasarle a un StringTokenizer y así poder procesar cada token de la query
     public Map<String, VocabularySlot> indexQuery(String query){
         if(query == null || query.isEmpty()) return null;
-        return null;
+
+        String [] tokens = query.split("[\\p{Punct}\\s]+");
+        Map<String, VocabularySlot> hashmap = new Hashtable<>();
+
+        StringNormalizer formatter = new StringNormalizer();
+
+        for(String token: tokens){
+            token = formatter.unaccent(token);
+            token=token.toLowerCase();
+            if(!stopWords.contains(token)) {
+                VocabularySlot queryToken = hashmap.getOrDefault(token, new VocabularySlot());
+                if (queryToken.getToken() == null) {
+                    queryToken.setToken(token);
+                }
+                queryToken.incrementMaxTf();
+                hashmap.put(token, queryToken);
+            }
+        }
+        return hashmap;
     }
 
 

@@ -1,6 +1,7 @@
 package emma.galzio.tpidlcmotorbusquedaficheros.indexation.structure;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
@@ -129,11 +130,27 @@ public class VocabularySlot {
         if(postingList != null) nr = postingList.size();
     }
 
+    public Comparator<VocabularySlot> nrComparator(){
+        return new NrComparator();
+    }
+
     //</editor-fold>
 
     public Iterator<PostingSlot> getPostingSlotIterator(){
         return postingList.iterator();
-
     }
+
+    public void incrementMaxTf(){
+        if(maxTf == null) maxTf = 0;
+        ++maxTf;
+    }
+
+    private class NrComparator implements Comparator<VocabularySlot>{
+        @Override
+        public int compare(VocabularySlot o1, VocabularySlot o2) {
+            return o1.getNr().compareTo(o2.getNr());
+        }
+    }
+
 
 }

@@ -65,7 +65,6 @@ public class PostingListJDBCWriter implements PostingListWriter{
 
         Collection<ModifiedToken> modifiedTokensCollection = modifiedTokens.values();
         List<PosteoEntity> newPosteoEntities = new LinkedList<>();
-        List<PosteoEntity> modifiedPosteoEntities = new LinkedList<>();
 
         for(ModifiedToken modifiedToken: modifiedTokensCollection){
 
@@ -79,12 +78,9 @@ public class PostingListJDBCWriter implements PostingListWriter{
                 PosteoEntity posteoEntity = postingSlotMapper.mapToEntity(postingSlot);
                 if(postingSlot.isNew()){
                     newPosteoEntities.add(posteoEntity);
-                } else{
-                    if(postingSlot.isNeedsUpdate()) { //En teoria no haría falta, debería estar siempre vacía
-                        modifiedPosteoEntities.add(posteoEntity);
-                    }
+                    this.updateDocumentosMap(postingSlot.getDocumentUrl());
                 }
-                this.updateDocumentosMap(postingSlot.getDocumentUrl());
+
             }
             if(modifiedToken.isNewToken()){
                 newVocabularyEntityList.add(vocabularyEntity);
@@ -95,21 +91,18 @@ public class PostingListJDBCWriter implements PostingListWriter{
         }
         logger.info("Domain-entity mapping finished");
         logger.info("Initiating batch inserts");
-
-
         List<DocumentoIndexadoEntity> documentoIndexadoEntityList = new LinkedList<>(documentosEntitiesMap.values());
-        logger.info("Modified PostingSlots list size: " + modifiedPosteoEntities.size());
+
         this.<DocumentoIndexadoEntity>insertBatch(documentoIndexadoDao, documentoIndexadoEntityList);
         logger.info("Documents insert finished");
         this.<VocabularyEntity>insertBatch(vocabularyDao, newVocabularyEntityList);
         this.<VocabularyEntity>updateBatch(vocabularyDao, modifiedVocabularyEntityList);
         logger.info("Tokens inserts and updates finished");
         this.<PosteoEntity>insertBatch(posteoDao, newPosteoEntities);
-        this.<PosteoEntity>updateBatch(posteoDao, modifiedPosteoEntities);
         logger.info("Posting lists inserts and updates finished");
 
         logger.info("All entities inserted successfully");
-        //this.cleanAll();
+        this.cleanAll();
 
     }
 
