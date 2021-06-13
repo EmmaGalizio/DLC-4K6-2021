@@ -19,16 +19,16 @@ public class QueryParserTest {
     @Autowired
     private DocumentoIndexadoRepository documentoIndexadoRepository;
 
-    @Test
+    //@Test
     public void queryParserTest(){
 
-        //String query = "But I know. For example, the word \"can't\" should";
-        //Map<String, VocabularySlot> parsedQuery = indexationEngine.indexQuery(query);
+        String query = "But I know. For example, the word can't should work!.";
+        Map<String, VocabularySlot> parsedQuery = indexationEngine.indexQuery(query);
 
-        //assertThat(parsedQuery.size()).isEqualTo(4);
-        //assertThat(parsedQuery.containsKey("perro")).isTrue();
-        //Integer count = documentoIndexadoRepository.countAll();
-        //System.out.println("Cant documentos: " + count);
+        assertThat(parsedQuery.size()).isEqualTo(4);
+        assertThat(parsedQuery.containsKey("perro")).isTrue();
+        Integer count = documentoIndexadoRepository.countAll();
+        System.out.println("Cant documentos: " + count);
 
 
 

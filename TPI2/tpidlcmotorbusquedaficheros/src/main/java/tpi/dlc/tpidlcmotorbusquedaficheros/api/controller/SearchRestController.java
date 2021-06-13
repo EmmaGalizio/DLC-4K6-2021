@@ -20,7 +20,9 @@ public class SearchRestController {
 
 
     @GetMapping
-    public List<DocumentResult> search(@RequestParam("query") String query, @RequestParam("r")int r){
+    public List<DocumentResult> search(@RequestParam("query") String query,
+                                       @RequestParam(value = "r", required = false)Integer r){
+        if(r == null) r = 10;
         List<DocumentResult> documentResultList = searchEngine.search(query, r);
         return documentResultList;
     }

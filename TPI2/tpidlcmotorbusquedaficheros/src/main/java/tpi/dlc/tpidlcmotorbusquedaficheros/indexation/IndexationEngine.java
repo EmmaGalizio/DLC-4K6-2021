@@ -81,7 +81,10 @@ public class IndexationEngine {
     public Map<String, VocabularySlot> indexQuery(String query){
         if(query == null || query.isEmpty()) return null;
 
-        String [] tokens = query.split("[\\p{Punct}\\s]+");
+        //String [] tokens = query.split("[\\p{Punct}\\s]+");
+        //String [] tokens = query.split("([.,;:¿?!¡=-_'\"]*\\s)");
+        query = query + " ";
+        String [] tokens = query.split("([\\W]*\\s)");
         Map<String, VocabularySlot> hashmap = new Hashtable<>();
 
         StringNormalizer formatter = new StringNormalizer();

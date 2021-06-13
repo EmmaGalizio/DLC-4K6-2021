@@ -70,9 +70,11 @@ public class SearchEngine {
             while(postingSlotIterator.hasNext() && count <= r ){
 
                 PostingSlot postingSlot = postingSlotIterator.next();
-                this.updateReulstMap(documentResultMap, postingSlot, vocabularySlot, documentsCount);
+                this.updateReulstMap(documentResultMap, postingSlot, vocabularySlot,
+                                                documentsCount, queryMap.get(vocabularySlot.getToken()));
                 count++;
             }
+            vocabularySlot.clearPostingList();
         }
         List<DocumentResult> documentResultList = new ArrayList<>(documentResultMap.values());
         documentResultList.sort(Collections.reverseOrder());
@@ -83,14 +85,16 @@ public class SearchEngine {
     }
 
     private void updateReulstMap(Map<String, DocumentResult> documentResultMap, PostingSlot postingSlot,
-                                                        VocabularySlot vocabularySlot, int documentsCount){
+                                                        VocabularySlot vocabularySlot, int documentsCount,
+                                                        VocabularySlot queryTokenSlot){
 
         DocumentResult documentResult = documentResultMap.getOrDefault(postingSlot.getDocumentUrl(),
                 new DocumentResult());
         documentResult.setUrl(postingSlot.getDocumentUrl());
         documentResult.setName(new File(postingSlot.getDocumentUrl()).getName());
         documentResult.setUri(servletContext.getContextPath() + "/documentos/"+ documentResult.getName());
-        double auxIr = postingSlot.getTokenFrecuency() * Math.log10(((double)documentsCount/vocabularySlot.getNr()));
+        double idf = Math.log10(((double)documentsCount/vocabularySlot.getNr()));
+        double auxIr = postingSlot.getTokenFrecuency() * idf * queryTokenSlot.getMaxTf();
         documentResult.setIr(documentResult.getIr() + auxIr);
         documentResultMap.put(postingSlot.getDocumentUrl(), documentResult);
     }
