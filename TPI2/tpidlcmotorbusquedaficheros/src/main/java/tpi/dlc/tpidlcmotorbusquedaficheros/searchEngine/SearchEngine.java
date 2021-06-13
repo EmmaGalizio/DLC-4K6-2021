@@ -1,13 +1,12 @@
-package emma.galzio.tpidlcmotorbusquedaficheros.searchEngine;
+package tpi.dlc.tpidlcmotorbusquedaficheros.searchEngine;
 
-import emma.galzio.tpidlcmotorbusquedaficheros.api.dto.DocumentResult;
-import emma.galzio.tpidlcmotorbusquedaficheros.indexation.IDocumentController;
-import emma.galzio.tpidlcmotorbusquedaficheros.indexation.IndexationEngine;
-import emma.galzio.tpidlcmotorbusquedaficheros.indexation.VocabularyController;
-import emma.galzio.tpidlcmotorbusquedaficheros.indexation.postingListReader.PostingListReader;
-import emma.galzio.tpidlcmotorbusquedaficheros.indexation.structure.PostingSlot;
-import emma.galzio.tpidlcmotorbusquedaficheros.indexation.structure.VocabularySlot;
-import emma.galzio.tpidlcmotorbusquedaficheros.persistence.repository.DocumentoIndexadoRepository;
+import tpi.dlc.tpidlcmotorbusquedaficheros.api.dto.DocumentResult;
+import tpi.dlc.tpidlcmotorbusquedaficheros.indexation.IDocumentController;
+import tpi.dlc.tpidlcmotorbusquedaficheros.indexation.IndexationEngine;
+import tpi.dlc.tpidlcmotorbusquedaficheros.indexation.VocabularyController;
+import tpi.dlc.tpidlcmotorbusquedaficheros.indexation.postingListReader.PostingListReader;
+import tpi.dlc.tpidlcmotorbusquedaficheros.indexation.structure.PostingSlot;
+import tpi.dlc.tpidlcmotorbusquedaficheros.indexation.structure.VocabularySlot;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -16,7 +15,6 @@ import javax.annotation.PostConstruct;
 import javax.servlet.ServletContext;
 import java.io.File;
 import java.util.*;
-import java.util.stream.Collectors;
 
 @Service
 public class SearchEngine {

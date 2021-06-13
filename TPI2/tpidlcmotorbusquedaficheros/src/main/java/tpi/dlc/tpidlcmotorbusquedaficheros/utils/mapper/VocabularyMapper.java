@@ -1,13 +1,12 @@
-package emma.galzio.tpidlcmotorbusquedaficheros.utils.mapper;
+package tpi.dlc.tpidlcmotorbusquedaficheros.utils.mapper;
 
-import emma.galzio.tpidlcmotorbusquedaficheros.indexation.structure.PostingSlot;
-import emma.galzio.tpidlcmotorbusquedaficheros.indexation.structure.VocabularySlot;
-import emma.galzio.tpidlcmotorbusquedaficheros.persistence.entity.PosteoEntity;
-import emma.galzio.tpidlcmotorbusquedaficheros.persistence.entity.VocabularyEntity;
+import tpi.dlc.tpidlcmotorbusquedaficheros.indexation.structure.PostingSlot;
+import tpi.dlc.tpidlcmotorbusquedaficheros.indexation.structure.VocabularySlot;
+import tpi.dlc.tpidlcmotorbusquedaficheros.persistence.entity.PosteoEntity;
+import tpi.dlc.tpidlcmotorbusquedaficheros.persistence.entity.VocabularyEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 

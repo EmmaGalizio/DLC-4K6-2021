@@ -1,4 +1,4 @@
-package emma.galzio.tpidlcmotorbusquedaficheros.persistence.entity;
+package tpi.dlc.tpidlcmotorbusquedaficheros.persistence.entity;
 
 import javax.persistence.*;
 

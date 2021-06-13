@@ -1,11 +1,10 @@
-package emma.galzio.tpidlcmotorbusquedaficheros.api.controller;
+package tpi.dlc.tpidlcmotorbusquedaficheros.api.controller;
 
-import emma.galzio.tpidlcmotorbusquedaficheros.api.dto.UploadFileResponse;
-import emma.galzio.tpidlcmotorbusquedaficheros.api.service.IndexationController;
+import tpi.dlc.tpidlcmotorbusquedaficheros.api.dto.UploadFileResponse;
+import tpi.dlc.tpidlcmotorbusquedaficheros.api.service.IndexationController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.servlet.ServletContext;
 import java.nio.file.Path;

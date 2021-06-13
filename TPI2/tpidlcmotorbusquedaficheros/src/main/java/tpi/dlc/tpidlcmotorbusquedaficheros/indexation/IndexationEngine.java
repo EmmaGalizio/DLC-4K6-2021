@@ -1,16 +1,17 @@
-package emma.galzio.tpidlcmotorbusquedaficheros.indexation;
+package tpi.dlc.tpidlcmotorbusquedaficheros.indexation;
 
-import emma.galzio.tpidlcmotorbusquedaficheros.indexation.postingListReader.PostingListReader;
-import emma.galzio.tpidlcmotorbusquedaficheros.indexation.postingListWriter.PostingListWriter;
-import emma.galzio.tpidlcmotorbusquedaficheros.indexation.structure.ModifiedToken;
-import emma.galzio.tpidlcmotorbusquedaficheros.indexation.structure.VocabularySlot;
-import emma.galzio.tpidlcmotorbusquedaficheros.utils.FileReader;
-import emma.galzio.tpidlcmotorbusquedaficheros.utils.StringNormalizer;
+import tpi.dlc.tpidlcmotorbusquedaficheros.indexation.postingListReader.PostingListReader;
+import tpi.dlc.tpidlcmotorbusquedaficheros.indexation.postingListWriter.PostingListWriter;
+import tpi.dlc.tpidlcmotorbusquedaficheros.indexation.structure.ModifiedToken;
+import tpi.dlc.tpidlcmotorbusquedaficheros.indexation.structure.VocabularySlot;
+import tpi.dlc.tpidlcmotorbusquedaficheros.utils.FileReader;
+import tpi.dlc.tpidlcmotorbusquedaficheros.utils.StringNormalizer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
+
 import javax.annotation.PostConstruct;
 import java.io.File;
 import java.util.*;

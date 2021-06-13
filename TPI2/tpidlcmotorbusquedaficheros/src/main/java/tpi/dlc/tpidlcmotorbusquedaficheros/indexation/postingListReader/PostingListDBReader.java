@@ -1,15 +1,14 @@
-package emma.galzio.tpidlcmotorbusquedaficheros.indexation.postingListReader;
+package tpi.dlc.tpidlcmotorbusquedaficheros.indexation.postingListReader;
 
-import emma.galzio.tpidlcmotorbusquedaficheros.indexation.structure.PostingSlot;
-import emma.galzio.tpidlcmotorbusquedaficheros.indexation.structure.VocabularySlot;
-import emma.galzio.tpidlcmotorbusquedaficheros.persistence.entity.PosteoEntity;
-import emma.galzio.tpidlcmotorbusquedaficheros.persistence.repository.PostingSlotRepository;
-import emma.galzio.tpidlcmotorbusquedaficheros.utils.mapper.EntityMapper;
+import tpi.dlc.tpidlcmotorbusquedaficheros.indexation.structure.PostingSlot;
+import tpi.dlc.tpidlcmotorbusquedaficheros.indexation.structure.VocabularySlot;
+import tpi.dlc.tpidlcmotorbusquedaficheros.persistence.entity.PosteoEntity;
+import tpi.dlc.tpidlcmotorbusquedaficheros.persistence.repository.PostingSlotRepository;
+import tpi.dlc.tpidlcmotorbusquedaficheros.utils.mapper.EntityMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
-import java.io.IOException;
 import java.util.List;
 
 @Service("postingListDBReader")

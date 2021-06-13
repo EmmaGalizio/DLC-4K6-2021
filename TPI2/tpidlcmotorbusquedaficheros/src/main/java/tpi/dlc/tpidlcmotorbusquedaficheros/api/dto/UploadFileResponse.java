@@ -1,4 +1,4 @@
-package emma.galzio.tpidlcmotorbusquedaficheros.api.dto;
+package tpi.dlc.tpidlcmotorbusquedaficheros.api.dto;
 
 public class UploadFileResponse {
 

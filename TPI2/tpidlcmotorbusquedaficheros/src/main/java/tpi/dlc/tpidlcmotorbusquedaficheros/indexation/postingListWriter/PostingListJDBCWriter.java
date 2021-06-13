@@ -1,19 +1,22 @@
-package emma.galzio.tpidlcmotorbusquedaficheros.indexation.postingListWriter;
+package tpi.dlc.tpidlcmotorbusquedaficheros.indexation.postingListWriter;
 
-import emma.galzio.tpidlcmotorbusquedaficheros.indexation.structure.ModifiedToken;
-import emma.galzio.tpidlcmotorbusquedaficheros.indexation.structure.PostingSlot;
-import emma.galzio.tpidlcmotorbusquedaficheros.indexation.structure.VocabularySlot;
-import emma.galzio.tpidlcmotorbusquedaficheros.persistence.entity.DocumentoIndexadoEntity;
-import emma.galzio.tpidlcmotorbusquedaficheros.persistence.entity.PosteoEntity;
-import emma.galzio.tpidlcmotorbusquedaficheros.persistence.entity.VocabularyEntity;
-import emma.galzio.tpidlcmotorbusquedaficheros.persistence.repository.*;
-import emma.galzio.tpidlcmotorbusquedaficheros.utils.mapper.EntityMapper;
+import tpi.dlc.tpidlcmotorbusquedaficheros.indexation.structure.ModifiedToken;
+import tpi.dlc.tpidlcmotorbusquedaficheros.indexation.structure.PostingSlot;
+import tpi.dlc.tpidlcmotorbusquedaficheros.indexation.structure.VocabularySlot;
+import tpi.dlc.tpidlcmotorbusquedaficheros.persistence.entity.DocumentoIndexadoEntity;
+import tpi.dlc.tpidlcmotorbusquedaficheros.persistence.entity.PosteoEntity;
+import tpi.dlc.tpidlcmotorbusquedaficheros.persistence.entity.VocabularyEntity;
+import tpi.dlc.tpidlcmotorbusquedaficheros.persistence.repository.BaseDao;
+import tpi.dlc.tpidlcmotorbusquedaficheros.utils.mapper.EntityMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import tpi.dlc.tpidlcmotorbusquedaficheros.persistence.repository.DocumentoIndexadoDao;
+import tpi.dlc.tpidlcmotorbusquedaficheros.persistence.repository.PosteoDao;
+import tpi.dlc.tpidlcmotorbusquedaficheros.persistence.repository.VocabularyDao;
 
 import javax.annotation.PostConstruct;
 import java.util.*;

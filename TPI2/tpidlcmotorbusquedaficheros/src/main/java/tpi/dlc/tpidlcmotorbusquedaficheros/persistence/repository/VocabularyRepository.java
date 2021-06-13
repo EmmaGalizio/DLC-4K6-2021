@@ -1,6 +1,6 @@
-package emma.galzio.tpidlcmotorbusquedaficheros.persistence.repository;
+package tpi.dlc.tpidlcmotorbusquedaficheros.persistence.repository;
 
-import emma.galzio.tpidlcmotorbusquedaficheros.persistence.entity.VocabularyEntity;
+import tpi.dlc.tpidlcmotorbusquedaficheros.persistence.entity.VocabularyEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Lock;
 

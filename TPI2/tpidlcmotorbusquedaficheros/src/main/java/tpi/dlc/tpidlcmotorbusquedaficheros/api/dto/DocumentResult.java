@@ -1,4 +1,4 @@
-package emma.galzio.tpidlcmotorbusquedaficheros.api.dto;
+package tpi.dlc.tpidlcmotorbusquedaficheros.api.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 

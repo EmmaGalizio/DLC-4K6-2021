@@ -1,9 +1,8 @@
-package emma.galzio.tpidlcmotorbusquedaficheros;
+package tpi.dlc.tpidlcmotorbusquedaficheros;
 
-import emma.galzio.tpidlcmotorbusquedaficheros.indexation.IndexationEngine;
-import emma.galzio.tpidlcmotorbusquedaficheros.indexation.structure.VocabularySlot;
-import emma.galzio.tpidlcmotorbusquedaficheros.persistence.repository.DocumentoIndexadoRepository;
-import org.junit.jupiter.api.Test;
+import tpi.dlc.tpidlcmotorbusquedaficheros.indexation.IndexationEngine;
+import tpi.dlc.tpidlcmotorbusquedaficheros.indexation.structure.VocabularySlot;
+import tpi.dlc.tpidlcmotorbusquedaficheros.persistence.repository.DocumentoIndexadoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 

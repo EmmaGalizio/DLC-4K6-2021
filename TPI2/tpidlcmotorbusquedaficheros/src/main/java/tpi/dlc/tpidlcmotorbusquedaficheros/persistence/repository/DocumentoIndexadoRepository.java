@@ -1,6 +1,6 @@
-package emma.galzio.tpidlcmotorbusquedaficheros.persistence.repository;
+package tpi.dlc.tpidlcmotorbusquedaficheros.persistence.repository;
 
-import emma.galzio.tpidlcmotorbusquedaficheros.persistence.entity.DocumentoIndexadoEntity;
+import tpi.dlc.tpidlcmotorbusquedaficheros.persistence.entity.DocumentoIndexadoEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Lock;
 import org.springframework.data.jpa.repository.Query;

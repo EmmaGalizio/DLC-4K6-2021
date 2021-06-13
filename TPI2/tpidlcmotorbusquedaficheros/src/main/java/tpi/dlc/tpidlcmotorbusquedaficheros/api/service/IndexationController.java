@@ -1,7 +1,7 @@
-package emma.galzio.tpidlcmotorbusquedaficheros.api.service;
+package tpi.dlc.tpidlcmotorbusquedaficheros.api.service;
 
-import emma.galzio.tpidlcmotorbusquedaficheros.indexation.IndexationEngine;
-import emma.galzio.tpidlcmotorbusquedaficheros.storage.exception.FileStorageException;
+import tpi.dlc.tpidlcmotorbusquedaficheros.indexation.IndexationEngine;
+import tpi.dlc.tpidlcmotorbusquedaficheros.storage.exception.FileStorageException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -9,7 +9,6 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.PostConstruct;
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;

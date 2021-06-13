@@ -1,9 +1,8 @@
-package emma.galzio.tpidlcmotorbusquedaficheros.utils.mapper;
+package tpi.dlc.tpidlcmotorbusquedaficheros.utils.mapper;
 
-import emma.galzio.tpidlcmotorbusquedaficheros.indexation.structure.PostingSlot;
-import emma.galzio.tpidlcmotorbusquedaficheros.persistence.entity.DocumentoIndexadoEntity;
-import emma.galzio.tpidlcmotorbusquedaficheros.persistence.entity.PosteoEntity;
-import emma.galzio.tpidlcmotorbusquedaficheros.persistence.entity.PosteoEntityId;
+import tpi.dlc.tpidlcmotorbusquedaficheros.indexation.structure.PostingSlot;
+import tpi.dlc.tpidlcmotorbusquedaficheros.persistence.entity.PosteoEntity;
+import tpi.dlc.tpidlcmotorbusquedaficheros.persistence.entity.PosteoEntityId;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

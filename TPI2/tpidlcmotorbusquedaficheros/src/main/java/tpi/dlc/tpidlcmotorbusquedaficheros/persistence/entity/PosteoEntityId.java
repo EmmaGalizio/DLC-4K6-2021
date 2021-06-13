@@ -1,6 +1,5 @@
-package emma.galzio.tpidlcmotorbusquedaficheros.persistence.entity;
+package tpi.dlc.tpidlcmotorbusquedaficheros.persistence.entity;
 
-import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import java.io.Serializable;
 

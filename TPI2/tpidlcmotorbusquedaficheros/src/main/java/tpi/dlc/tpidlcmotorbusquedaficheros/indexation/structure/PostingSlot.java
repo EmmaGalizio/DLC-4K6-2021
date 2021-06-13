@@ -1,4 +1,4 @@
-package emma.galzio.tpidlcmotorbusquedaficheros.indexation.structure;
+package tpi.dlc.tpidlcmotorbusquedaficheros.indexation.structure;
 
 import java.util.Comparator;
 

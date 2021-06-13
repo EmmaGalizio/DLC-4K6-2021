@@ -10,7 +10,7 @@
     </parent>
     <groupId>emma.galzio</groupId>
     <artifactId>tpidlcmotorbusquedaficheros</artifactId>
-    <version>0.0.1</version>
+    <version>1.0.1</version>
     <name>tpiDlcMotorBusquedaFicheros</name>
     <description>Motor de busqueda basado en el modelo vectorial</description>
     <properties>

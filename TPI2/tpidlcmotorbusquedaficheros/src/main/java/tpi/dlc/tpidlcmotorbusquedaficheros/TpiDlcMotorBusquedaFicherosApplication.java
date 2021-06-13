@@ -1,6 +1,6 @@
-package emma.galzio.tpidlcmotorbusquedaficheros;
+package tpi.dlc.tpidlcmotorbusquedaficheros;
 
-import emma.galzio.tpidlcmotorbusquedaficheros.indexation.IndexationEngine;
+import tpi.dlc.tpidlcmotorbusquedaficheros.indexation.IndexationEngine;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;

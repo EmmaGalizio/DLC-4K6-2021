@@ -1,7 +1,7 @@
-package emma.galzio.tpidlcmotorbusquedaficheros.persistence.repository;
+package tpi.dlc.tpidlcmotorbusquedaficheros.persistence.repository;
 
-import emma.galzio.tpidlcmotorbusquedaficheros.persistence.entity.PosteoEntity;
-import emma.galzio.tpidlcmotorbusquedaficheros.persistence.entity.PosteoEntityId;
+import tpi.dlc.tpidlcmotorbusquedaficheros.persistence.entity.PosteoEntity;
+import tpi.dlc.tpidlcmotorbusquedaficheros.persistence.entity.PosteoEntityId;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Lock;
 import org.springframework.stereotype.Repository;

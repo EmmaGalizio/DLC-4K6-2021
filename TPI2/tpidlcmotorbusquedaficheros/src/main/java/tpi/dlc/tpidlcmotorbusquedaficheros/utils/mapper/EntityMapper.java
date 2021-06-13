@@ -1,4 +1,4 @@
-package emma.galzio.tpidlcmotorbusquedaficheros.utils.mapper;
+package tpi.dlc.tpidlcmotorbusquedaficheros.utils.mapper;
 
 import java.util.List;
 

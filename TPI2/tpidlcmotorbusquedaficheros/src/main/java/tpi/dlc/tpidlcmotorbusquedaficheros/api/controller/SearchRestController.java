@@ -1,8 +1,8 @@
-package emma.galzio.tpidlcmotorbusquedaficheros.api.controller;
+package tpi.dlc.tpidlcmotorbusquedaficheros.api.controller;
 
 
-import emma.galzio.tpidlcmotorbusquedaficheros.api.dto.DocumentResult;
-import emma.galzio.tpidlcmotorbusquedaficheros.searchEngine.SearchEngine;
+import tpi.dlc.tpidlcmotorbusquedaficheros.api.dto.DocumentResult;
+import tpi.dlc.tpidlcmotorbusquedaficheros.searchEngine.SearchEngine;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

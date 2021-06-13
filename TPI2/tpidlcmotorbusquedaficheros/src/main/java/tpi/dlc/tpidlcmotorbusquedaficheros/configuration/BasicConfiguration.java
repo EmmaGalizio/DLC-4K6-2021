@@ -1,9 +1,6 @@
-package emma.galzio.tpidlcmotorbusquedaficheros.configuration;
+package tpi.dlc.tpidlcmotorbusquedaficheros.configuration;
 
-import emma.galzio.tpidlcmotorbusquedaficheros.indexation.IndexationEngine;
-import emma.galzio.tpidlcmotorbusquedaficheros.indexation.structure.VocabularySlot;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import tpi.dlc.tpidlcmotorbusquedaficheros.indexation.structure.VocabularySlot;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Bean;
@@ -13,8 +10,6 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.RandomAccessFile;
 import java.util.Collections;
 import java.util.Hashtable;
 import java.util.Map;

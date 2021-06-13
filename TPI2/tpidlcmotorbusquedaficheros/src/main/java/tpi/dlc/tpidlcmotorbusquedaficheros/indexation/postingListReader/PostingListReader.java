@@ -1,8 +1,6 @@
-package emma.galzio.tpidlcmotorbusquedaficheros.indexation.postingListReader;
+package tpi.dlc.tpidlcmotorbusquedaficheros.indexation.postingListReader;
 
-import emma.galzio.tpidlcmotorbusquedaficheros.indexation.structure.VocabularySlot;
-
-import java.io.IOException;
+import tpi.dlc.tpidlcmotorbusquedaficheros.indexation.structure.VocabularySlot;
 
 public interface PostingListReader {
 

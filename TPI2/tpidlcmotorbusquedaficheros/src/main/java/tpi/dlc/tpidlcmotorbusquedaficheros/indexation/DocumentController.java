@@ -1,7 +1,7 @@
-package emma.galzio.tpidlcmotorbusquedaficheros.indexation;
+package tpi.dlc.tpidlcmotorbusquedaficheros.indexation;
 
-import emma.galzio.tpidlcmotorbusquedaficheros.persistence.entity.DocumentoIndexadoEntity;
-import emma.galzio.tpidlcmotorbusquedaficheros.persistence.repository.DocumentoIndexadoRepository;
+import tpi.dlc.tpidlcmotorbusquedaficheros.persistence.entity.DocumentoIndexadoEntity;
+import tpi.dlc.tpidlcmotorbusquedaficheros.persistence.repository.DocumentoIndexadoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,6 +1,6 @@
-package emma.galzio.tpidlcmotorbusquedaficheros.persistence.repository;
+package tpi.dlc.tpidlcmotorbusquedaficheros.persistence.repository;
 
-import emma.galzio.tpidlcmotorbusquedaficheros.persistence.entity.DocumentoIndexadoEntity;
+import tpi.dlc.tpidlcmotorbusquedaficheros.persistence.entity.DocumentoIndexadoEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;

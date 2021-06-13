@@ -1,16 +1,15 @@
-package emma.galzio.tpidlcmotorbusquedaficheros.indexation;
+package tpi.dlc.tpidlcmotorbusquedaficheros.indexation;
 
-import emma.galzio.tpidlcmotorbusquedaficheros.indexation.structure.VocabularySlot;
-import emma.galzio.tpidlcmotorbusquedaficheros.persistence.entity.StopWordEntity;
-import emma.galzio.tpidlcmotorbusquedaficheros.persistence.entity.VocabularyEntity;
-import emma.galzio.tpidlcmotorbusquedaficheros.persistence.repository.StopWordRepository;
-import emma.galzio.tpidlcmotorbusquedaficheros.persistence.repository.VocabularyRepository;
-import emma.galzio.tpidlcmotorbusquedaficheros.utils.mapper.EntityMapper;
+import tpi.dlc.tpidlcmotorbusquedaficheros.indexation.structure.VocabularySlot;
+import tpi.dlc.tpidlcmotorbusquedaficheros.persistence.entity.StopWordEntity;
+import tpi.dlc.tpidlcmotorbusquedaficheros.persistence.entity.VocabularyEntity;
+import tpi.dlc.tpidlcmotorbusquedaficheros.persistence.repository.StopWordRepository;
+import tpi.dlc.tpidlcmotorbusquedaficheros.persistence.repository.VocabularyRepository;
+import tpi.dlc.tpidlcmotorbusquedaficheros.utils.mapper.EntityMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 @Service
 public class VocabularyController {

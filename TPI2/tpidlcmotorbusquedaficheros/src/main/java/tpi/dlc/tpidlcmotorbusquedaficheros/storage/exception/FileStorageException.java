@@ -1,4 +1,4 @@
-package emma.galzio.tpidlcmotorbusquedaficheros.storage.exception;
+package tpi.dlc.tpidlcmotorbusquedaficheros.storage.exception;
 
 public class FileStorageException extends RuntimeException{
 

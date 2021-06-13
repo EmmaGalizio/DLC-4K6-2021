@@ -1,4 +1,4 @@
-package emma.galzio.tpidlcmotorbusquedaficheros.indexation;
+package tpi.dlc.tpidlcmotorbusquedaficheros.indexation;
 
 import java.util.List;
 

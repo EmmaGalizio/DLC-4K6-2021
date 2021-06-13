@@ -1,8 +1,7 @@
-package emma.galzio.tpidlcmotorbusquedaficheros;
+package tpi.dlc.tpidlcmotorbusquedaficheros;
 
-import emma.galzio.tpidlcmotorbusquedaficheros.api.dto.DocumentResult;
-import emma.galzio.tpidlcmotorbusquedaficheros.searchEngine.SearchEngine;
-import org.junit.jupiter.api.Test;
+import tpi.dlc.tpidlcmotorbusquedaficheros.api.dto.DocumentResult;
+import tpi.dlc.tpidlcmotorbusquedaficheros.searchEngine.SearchEngine;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 

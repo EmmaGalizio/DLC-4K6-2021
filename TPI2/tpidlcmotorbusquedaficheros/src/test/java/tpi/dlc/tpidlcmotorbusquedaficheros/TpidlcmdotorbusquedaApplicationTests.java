@@ -1,17 +1,12 @@
-package emma.galzio.tpidlcmotorbusquedaficheros;
+package tpi.dlc.tpidlcmotorbusquedaficheros;
 
-import emma.galzio.tpidlcmotorbusquedaficheros.indexation.IndexationEngine;
-import emma.galzio.tpidlcmotorbusquedaficheros.indexation.structure.ModifiedToken;
-import org.junit.jupiter.api.Order;
-import org.junit.jupiter.api.Test;
+import tpi.dlc.tpidlcmotorbusquedaficheros.indexation.IndexationEngine;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
 
 import java.io.File;
-import java.io.IOException;
-import java.util.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

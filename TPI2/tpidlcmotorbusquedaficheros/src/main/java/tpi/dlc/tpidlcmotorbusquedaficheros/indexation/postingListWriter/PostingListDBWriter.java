@@ -1,9 +1,7 @@
-package emma.galzio.tpidlcmotorbusquedaficheros.indexation.postingListWriter;
+package tpi.dlc.tpidlcmotorbusquedaficheros.indexation.postingListWriter;
 
-import emma.galzio.tpidlcmotorbusquedaficheros.indexation.structure.*;
-import emma.galzio.tpidlcmotorbusquedaficheros.persistence.entity.*;
-import emma.galzio.tpidlcmotorbusquedaficheros.persistence.repository.*;
-import emma.galzio.tpidlcmotorbusquedaficheros.utils.mapper.EntityMapper;
+
+import tpi.dlc.tpidlcmotorbusquedaficheros.utils.mapper.EntityMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +9,10 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import tpi.dlc.tpidlcmotorbusquedaficheros.indexation.structure.*;
+import tpi.dlc.tpidlcmotorbusquedaficheros.persistence.entity.*;
+import tpi.dlc.tpidlcmotorbusquedaficheros.persistence.repository.*;
+
 
 import javax.annotation.PostConstruct;
 import java.util.*;
@@ -36,7 +38,7 @@ public class PostingListDBWriter implements PostingListWriter {
     private int BATCH_SIZE;
     private Logger logger;
 
-    private Map<String,DocumentoIndexadoEntity> documentosEntitiesMap;
+    private Map<String, DocumentoIndexadoEntity> documentosEntitiesMap;
     //private Map<String, VocabularyEntity> vocabularyEntityMap;
     //private Map<PosteoEntityId, PosteoEntity> posteoEntityMap;
 
